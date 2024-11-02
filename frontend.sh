@@ -1,32 +1,9 @@
 #!/bin/bash
 
-userid=$(id -u)
-scriptname=$(echo $0 | cut -d "." -f1)
-timestamp=$(date +%F-%H-%M-%S)
-logfile=$scriptname-$timestamp.log
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
-echo "please enter the password"
-read -s password
 
-if [ $userid -ne 0 ]
-then
-    echo -e "$R ***Please run the script in super user*** $N"
-else
-    echo -e "$G ***You are a super user*** $N"
-fi   
+source ./common.sh
 
-validate(){
-    if [ $1 -ne 0 ]
-    then
-        echo -e "$R *****$2 Installation Failure****$N"
-        exit 1
-    else
-        echo -e "$G *****$2 Installation Success*****$N"
-    fi
-}
+check_root
 
 dnf install nginx -y 
 validate $? "installing nginx"
