@@ -9,8 +9,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-echo "please enter mysql password"
-read -s my_sql_password
+
 
 VALIDATE(){
     if [ $1 -ne 0 ]
